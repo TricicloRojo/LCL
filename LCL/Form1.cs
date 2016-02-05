@@ -71,6 +71,7 @@ namespace LCL
 
         private void cmdStart_Click(object sender, EventArgs e)
         {
+            Boolean found=false;
             if (!File.Exists(@"C:\Users\Carmen\Documents\Historial Locales\" + cmbMes.SelectedItem.ToString() + " " + DateTime.Today.Year + ".xlsx"))
             {
                 MessageBox.Show("El archivo " + cmbMes.SelectedItem.ToString() + " " + DateTime.Today.Year + ".xlsx" + " no fue encontrado", "Archivo no encontrado", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -94,8 +95,17 @@ namespace LCL
                 Uniti_Send_Email();
                 
                 listBox1.Items.Add("Ejectuando copia de Seguridad");
-                while (!File.Exists(@"E:\Historial Locales\Septiembre 2012.xlsx"))
-                    MessageBox.Show("Ingrese Pendrive", "Pendrive no encontrado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                while (!found)
+                { 
+                    foreach (DriveInfo drive in DriveInfo.GetDrives())
+                    {
+                        if (drive.DriveType.ToString() == "Removable")
+                            if (File.Exists(String.Format(@"{0}Historial Locales\Septiembre 2012.xlsx", drive.Name)))
+                                found = true;
+                    }
+                    if (!found)
+                        MessageBox.Show("Ingrese Pendrive", "Pendrive no encontrado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
                 System.Diagnostics.Process.Start(@"C:\Users\Carmen\Desktop\Copia-Seguridad Locales.bat");
                 listBox1.Items.Add("TERMINAMOS!! El programa se cerrara automaticamente..");
                 Timer timer1 = new Timer();

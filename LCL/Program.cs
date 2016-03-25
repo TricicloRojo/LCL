@@ -1,5 +1,7 @@
-﻿using System;
+﻿using LCL.Vistas;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,7 +18,20 @@ namespace LCL
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Main());
+
+            //Si es la 2 vez que entra a la app (el . es convencion)
+            if (File.Exists(".Inmobiliaria.json"))
+            {
+
+                //  Application.Run(new CharlyWindow());
+
+            }
+            else {
+
+                //Si es la primera vez va a poder configurar
+                Application.Run(new ventanaConfiguracion());
+
+            }
         }
     }
 }

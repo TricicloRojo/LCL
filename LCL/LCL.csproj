@@ -52,6 +52,10 @@
     <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -68,6 +72,8 @@
   <ItemGroup>
     <Compile Include="Classes\Business\Inmobiliaria.cs" />
     <Compile Include="Classes\Business\Interfaces\IInmob.cs" />
+    <Compile Include="Classes\model\Cliente.cs" />
+    <Compile Include="Classes\model\Excel.cs" />
     <Compile Include="Classes\Utils\PropertiesManager.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -75,10 +81,28 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Vista\ventanaAlta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\ventanaAlta.Designer.cs">
+      <DependentUpon>ventanaAlta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\ventanaConfiguracion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\ventanaConfiguracion.Designer.cs">
+      <DependentUpon>ventanaConfiguracion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vista\ventanaAlta.resx">
+      <DependentUpon>ventanaAlta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vista\ventanaConfiguracion.resx">
+      <DependentUpon>ventanaConfiguracion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -90,6 +114,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
